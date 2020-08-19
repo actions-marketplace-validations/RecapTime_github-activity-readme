@@ -1,6 +1,6 @@
 # GitHub Activity in Readme
 
-Updates `README.md` with the recent GitHub activity of a user.
+Updates a GitHub user's `README.md` with the recent GitHub activity.
 
 <img width="735" alt="profile-repo" src="https://user-images.githubusercontent.com/25279263/87703301-3aa4a500-c7b8-11ea-8eb6-245121997a7b.png">
 
@@ -11,6 +11,8 @@ Updates `README.md` with the recent GitHub activity of a user.
 ---
 
 ## Instructions
+
+**NOTE**:We recommend to have an `your-username/your-username` repo on your personal GitHub account and not on your org (they're unsupported yet).
 
 - Add the comment `<!--START_SECTION:activity-->` (entry point) within `README.md`. You can find an example
 [here](https://github.com/AndreiJirohHaliliDev2006/AndreiJirohHaliliDev2006/blob/master/README.md).
