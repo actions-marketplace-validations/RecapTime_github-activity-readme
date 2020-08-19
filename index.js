@@ -168,7 +168,9 @@ Toolkit.run(
       try {
         await commitFile();
       } catch (err) {
-        tools.log.debug("Something went wrong while commiting updates, exiting...");
+        tools.log.debug(
+          "Something went wrong while commiting updates, exiting..."
+        );
         return tools.exit.failure(err);
       }
       tools.exit.success("Successfully wrote to README");
@@ -219,7 +221,9 @@ Toolkit.run(
     try {
       await commitFile();
     } catch (err) {
-      tools.log.debug("Something went wrong while pushing to remote repository, exiting...");
+      tools.log.debug(
+        "Something went wrong while pushing to remote repository, exiting..."
+      );
       return tools.exit.failure(err);
     }
     tools.exit.success("Successfully pushed to remote repository.");
