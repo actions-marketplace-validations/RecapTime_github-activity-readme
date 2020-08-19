@@ -35,7 +35,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: AndreiJirohHaliliDev20067/github-activity-readme@master
+
+      # Pin the version to the latest stable version.
+      # If you want to live on edge, use 'master' branch.
+      - uses: MadeByThePinsHub/github-activity-readme@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
