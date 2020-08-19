@@ -66,9 +66,9 @@ const commitFile = async () => {
     "config",
     "--global",
     "user.email",
-    "readme-bot@example.com",
+    "service-accounts+github@devhubcentral.ml",
   ]);
-  await exec("git", ["config", "--global", "user.name", "readme-bot"]);
+  await exec("git", ["config", "--global", "user.name", "Recap Time Bot"]);
   await exec("git", ["add", "README.md"]);
   await exec("git", [
     "commit",
@@ -168,10 +168,10 @@ Toolkit.run(
       try {
         await commitFile();
       } catch (err) {
-        tools.log.debug("Something went wrong");
+        tools.log.debug("Something went wrong while commiting updates, exiting...");
         return tools.exit.failure(err);
       }
-      tools.exit.success("Wrote to README");
+      tools.exit.success("Successfully wrote to README");
     }
 
     const oldContent = readmeContent.slice(startIdx + 1, endIdx).join("\n");
@@ -219,10 +219,10 @@ Toolkit.run(
     try {
       await commitFile();
     } catch (err) {
-      tools.log.debug("Something went wrong");
+      tools.log.debug("Something went wrong while pushing to remote repository, exiting...");
       return tools.exit.failure(err);
     }
-    tools.exit.success("Pushed to remote repository");
+    tools.exit.success("Successfully pushed to remote repository.");
   },
   {
     event: ["schedule", "workflow_dispatch"],
