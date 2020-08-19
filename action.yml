@@ -1,6 +1,6 @@
-name: GitHub - Activity - Readme
-description: Updates README with the recent GitHub activity of a user
-author: jamesgeorge007
+name: GitHub README Activity Section Updater
+description: Updates your personal README with the recent GitHub activity of a user. Fork of https://github.com/jamesgeorge007/github-activity-readme.
+author: MadeByThePinsHub
 
 inputs:
   USERNAME:
