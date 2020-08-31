@@ -36,16 +36,20 @@ const toUrlFormat = (item) => {
 /**
  * Execute shell command
  * @param {String} cmd - root command
- * @param {String[]} args - args to be passed alongwith
+ * @param {String[]} args - args to be passed along with
  *
  * @returns {Promise<void>}
  */
 
 const exec = (cmd, args = []) =>
   new Promise((resolve, reject) => {
-    const app = spawn(cmd, args, { stdio: "inherit" });
+    const app = spawn(cmd, args, { stdio: "pipe" });
+    let stdout = "";
+    app.stdout.on("data", (data) => {
+      stdout = data;
+    });
     app.on("close", (code) => {
-      if (code !== 0) {
+      if (code !== 0 && !stdout.includes("nothing to commit")) {
         err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         return reject(err);
@@ -122,7 +126,7 @@ Toolkit.run(
 
     const readmeContent = fs.readFileSync("./README.md", "utf-8").split("\n");
 
-    // Find the indec corresponding to <!--START_SECTION:activity--> comment
+    // Find the index corresponding to <!--START_SECTION:activity--> comment
     let startIdx = readmeContent.findIndex(
       (content) => content.trim() === "<!--START_SECTION:activity-->"
     );
@@ -140,7 +144,7 @@ Toolkit.run(
     );
 
     if (!content.length) {
-      tools.exit.failure("No events found");
+      tools.exit.failure("No PullRequest/Issue/IssueComment events found");
     }
 
     if (content.length < 5) {
