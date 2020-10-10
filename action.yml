@@ -3,9 +3,14 @@ description: Updates your personal README with the recent GH activity, fork of h
 author: MadeByThePinsHub
 
 inputs:
-  USERNAME:
+  GH_USERNAME:
     description: 'Your GitHub username'
     default: ${{ github.repository_owner }}
+    required: false
+  COMMIT_MSG:
+    description: "Commit message used while committing to the repo"
+    default: ":zap: Update README with the recent activity"
+    required: false
 
 branding:
   color: yellow
