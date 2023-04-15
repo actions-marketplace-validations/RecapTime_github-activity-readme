@@ -5,46 +5,46 @@ Updates a GitHub user's `README.md` with the recent GitHub activity.
 <img width="735" alt="profile-repo" src="https://user-images.githubusercontent.com/25279263/87703301-3aa4a500-c7b8-11ea-8eb6-245121997a7b.png">
 
 > **Remember that using this fork will commit your updated README as the [Recap TIme Bot](https://github.com/RecapTimeBot).**
-> That account is managed by [the Pins team](https://madebythepins.tk) and will count it as an contribution to your README repo.
+> That account is managed by [Recap Time Squad](https://recaptime.eu.org) and will count it as an contribution to your README repo.
 > If you want, add that account to your collaborators to allow us debug issues.
 
 ---
 
 ## Instructions
 
-**NOTE**:We recommend to have an `your-username/your-username` repo on your personal GitHub account and not on your org (they're unsupported yet).
+**NOTE**: We recommend to have an `your-username/your-username` repo on your personal GitHub account and not on your org (they're unsupported by design).
 
 - Add the comment `<!--START_SECTION:activity-->` (entry point) within `README.md`. You can find an example
-[here](https://github.com/AndreiJirohHaliliDev2006/AndreiJirohHaliliDev2006/blob/master/README.md).
+[here](https://github.com/ajhalili2006/blob/ajhalili2006/main/README.md).
 
 - It's the time to create a workflow file called `.github/workflows/update-readme.yml`. The above job runs every half an hour, you can change it as you
 wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
-You can find an example [here](https://github.com/AndreiJirohHaliliDev2006/AndreiJirohHaliliDev2006/blob/master/.github/workflows/update-readme.yml).
+You can find an example [here](https://github.com/ajhalili2006/ajhalili2006/blob/ajhalili2006/main/.github/workflows/pull-gh-activity.yml).
 
 
 ```yml
-name: Update README
+name: GitHub activity feed to README
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '* */2 * * *' # 30 minus to probably too much for API ratelimits
 
 jobs:
-  build:
+  generate-feed:
     runs-on: ubuntu-latest
-    name: Update this repo's README with recent activity
+    name: Generate feed
 
     steps:
       - uses: actions/checkout@v2
 
       # Pin the version to the latest stable version.
       # If you want to live on edge, use 'master' branch.
-      - uses: MadeByThePinsHub/github-activity-readme@master
+      - uses: RecapTime/github-activity-readme@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-The above job runs every half an hour, you can change it as you wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
+The above job runs every two hours, you can change it as you wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
 
 Please note that only those public events that belong to the following list show up:
 
